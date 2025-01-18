@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -38,13 +39,10 @@ class DraggableMarkerMapRoute
     required _i11.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          DraggableMarkerMapRoute.name,
-          args: DraggableMarkerMapRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         DraggableMarkerMapRoute.name,
+         args: DraggableMarkerMapRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'DraggableMarkerMapRoute';
 
@@ -52,19 +50,13 @@ class DraggableMarkerMapRoute
     name,
     builder: (data) {
       final args = data.argsAs<DraggableMarkerMapRouteArgs>();
-      return _i1.DraggableMarkerMapScreen(
-        key: args.key,
-        latLng: args.latLng,
-      );
+      return _i1.DraggableMarkerMapScreen(key: args.key, latLng: args.latLng);
     },
   );
 }
 
 class DraggableMarkerMapRouteArgs {
-  const DraggableMarkerMapRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const DraggableMarkerMapRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 
@@ -85,13 +77,10 @@ class FlutterMapDraggableMarkerMapRoute
     required _i12.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          FlutterMapDraggableMarkerMapRoute.name,
-          args: FlutterMapDraggableMarkerMapRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         FlutterMapDraggableMarkerMapRoute.name,
+         args: FlutterMapDraggableMarkerMapRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'FlutterMapDraggableMarkerMapRoute';
 
@@ -108,10 +97,7 @@ class FlutterMapDraggableMarkerMapRoute
 }
 
 class FlutterMapDraggableMarkerMapRouteArgs {
-  const FlutterMapDraggableMarkerMapRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const FlutterMapDraggableMarkerMapRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 
@@ -127,10 +113,7 @@ class FlutterMapDraggableMarkerMapRouteArgs {
 /// [_i3.FlutterMapHomeScreen]
 class FlutterMapHomeRoute extends _i9.PageRouteInfo<void> {
   const FlutterMapHomeRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          FlutterMapHomeRoute.name,
-          initialChildren: children,
-        );
+    : super(FlutterMapHomeRoute.name, initialChildren: children);
 
   static const String name = 'FlutterMapHomeRoute';
 
@@ -151,13 +134,10 @@ class FlutterMapMapDialogRoute
     required _i11.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          FlutterMapMapDialogRoute.name,
-          args: FlutterMapMapDialogRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         FlutterMapMapDialogRoute.name,
+         args: FlutterMapMapDialogRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'FlutterMapMapDialogRoute';
 
@@ -165,19 +145,13 @@ class FlutterMapMapDialogRoute
     name,
     builder: (data) {
       final args = data.argsAs<FlutterMapMapDialogRouteArgs>();
-      return _i4.FlutterMapMapDialogRoute(
-        key: args.key,
-        latLng: args.latLng,
-      );
+      return _i4.FlutterMapMapDialogRoute(key: args.key, latLng: args.latLng);
     },
   );
 }
 
 class FlutterMapMapDialogRouteArgs {
-  const FlutterMapMapDialogRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const FlutterMapMapDialogRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 
@@ -198,13 +172,10 @@ class FlutterMapScrollableSheetRoute
     required _i12.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          FlutterMapScrollableSheetRoute.name,
-          args: FlutterMapScrollableSheetRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         FlutterMapScrollableSheetRoute.name,
+         args: FlutterMapScrollableSheetRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'FlutterMapScrollableSheetRoute';
 
@@ -221,10 +192,7 @@ class FlutterMapScrollableSheetRoute
 }
 
 class FlutterMapScrollableSheetRouteArgs {
-  const FlutterMapScrollableSheetRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const FlutterMapScrollableSheetRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 
@@ -240,10 +208,7 @@ class FlutterMapScrollableSheetRouteArgs {
 /// [_i6.HomeScreen]
 class HomeRoute extends _i9.PageRouteInfo<void> {
   const HomeRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -263,13 +228,10 @@ class MapDialogRoute extends _i9.PageRouteInfo<MapDialogRouteArgs> {
     required _i11.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          MapDialogRoute.name,
-          args: MapDialogRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         MapDialogRoute.name,
+         args: MapDialogRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'MapDialogRoute';
 
@@ -277,19 +239,13 @@ class MapDialogRoute extends _i9.PageRouteInfo<MapDialogRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<MapDialogRouteArgs>();
-      return _i7.MapDialogScreen(
-        key: args.key,
-        latLng: args.latLng,
-      );
+      return _i7.MapDialogScreen(key: args.key, latLng: args.latLng);
     },
   );
 }
 
 class MapDialogRouteArgs {
-  const MapDialogRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const MapDialogRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 
@@ -309,13 +265,10 @@ class ScrollableSheetRoute extends _i9.PageRouteInfo<ScrollableSheetRouteArgs> {
     required _i11.LatLng latLng,
     List<_i9.PageRouteInfo>? children,
   }) : super(
-          ScrollableSheetRoute.name,
-          args: ScrollableSheetRouteArgs(
-            key: key,
-            latLng: latLng,
-          ),
-          initialChildren: children,
-        );
+         ScrollableSheetRoute.name,
+         args: ScrollableSheetRouteArgs(key: key, latLng: latLng),
+         initialChildren: children,
+       );
 
   static const String name = 'ScrollableSheetRoute';
 
@@ -323,19 +276,13 @@ class ScrollableSheetRoute extends _i9.PageRouteInfo<ScrollableSheetRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<ScrollableSheetRouteArgs>();
-      return _i8.ScrollableSheetScreen(
-        key: args.key,
-        latLng: args.latLng,
-      );
+      return _i8.ScrollableSheetScreen(key: args.key, latLng: args.latLng);
     },
   );
 }
 
 class ScrollableSheetRouteArgs {
-  const ScrollableSheetRouteArgs({
-    this.key,
-    required this.latLng,
-  });
+  const ScrollableSheetRouteArgs({this.key, required this.latLng});
 
   final _i10.Key? key;
 

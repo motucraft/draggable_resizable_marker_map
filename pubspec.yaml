@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.6.1
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
   flutter_hooks: ^0.20.5
   riverpod_annotation: ^2.6.1
   geolocator: ^13.0.2
-  auto_route: ^9.2.2
+  auto_route: ^9.3.0+1
   cached_network_image: ^3.4.1
   http: ^1.2.2
   freezed_annotation: ^2.4.4
@@ -36,13 +36,13 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
-  riverpod_generator: ^2.6.3
+  riverpod_generator: ^2.6.4
   build_runner: ^2.4.14
-  custom_lint: ^0.7.0
-  riverpod_lint: ^2.6.3
-  auto_route_generator: ^9.0.0
-  freezed: ^2.5.7
-  json_serializable: ^6.9.0
+  custom_lint: ^0.7.1
+  riverpod_lint: ^2.6.4
+  auto_route_generator: ^9.3.1
+  freezed: ^2.5.8
+  json_serializable: ^6.9.3
 
 flutter:
   uses-material-design: true
