@@ -3,9 +3,11 @@ import 'dart:math';
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:draggable_resizable_marker_map/gen/assets.gen.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/models/draggable_stamp.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/models/dropped_stamp.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/router/router.gr.dart';
+import 'package:draggable_resizable_marker_map/with_flutter_map/screens/providers/copyright.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/screens/providers/dropped_stamp_notifier.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/screens/providers/edit_mode_notifier.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/screens/providers/map_controller.dart';
@@ -14,6 +16,7 @@ import 'package:draggable_resizable_marker_map/with_flutter_map/screens/provider
 import 'package:draggable_resizable_marker_map/with_flutter_map/widgets/stamp_list.dart';
 import 'package:draggable_resizable_marker_map/with_flutter_map/widgets/stamp_selection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:latlong2/latlong.dart';
@@ -111,7 +114,7 @@ class DraggableMarkerMap extends HookConsumerWidget {
   }
 }
 
-class MapBody extends ConsumerWidget {
+class MapBody extends HookConsumerWidget {
   const MapBody({super.key, required this.latLng});
 
   final LatLng latLng;
@@ -124,6 +127,11 @@ class MapBody extends ConsumerWidget {
     final markers = ref.watch(markerNotifierProvider).valueOrNull ?? [];
     final editMode = ref.watch(editModeNotifierProvider);
 
+    final bounds = useMemoized(() => _calculateBounds(latLng, 1), [latLng]);
+    final copyright = ref
+        .watch(copyrightProvider(latLng: latLng, bounds: bounds))
+        .valueOrNull;
+
     return sessionTokenAsyncValue.maybeWhen(
       data: (sessionToken) {
         return Stack(
@@ -135,6 +143,7 @@ class MapBody extends ConsumerWidget {
                 initialZoom: 18,
                 maxZoom: 20,
                 minZoom: 16,
+                cameraConstraint: CameraConstraint.contain(bounds: bounds),
                 interactionOptions: InteractionOptions(
                   flags: editMode == EditMode.transform ||
                           editMode == EditMode.arrow
@@ -212,6 +221,21 @@ class MapBody extends ConsumerWidget {
               },
               builder: (_, __, ___) => const SizedBox.expand(),
             ),
+            // ref: https://developers.google.com/maps/documentation/tile/policies?hl=ja
+            Positioned(
+              left: 8,
+              bottom: MediaQuery.paddingOf(context).bottom + 72,
+              child: Assets.images.googleLogo.image(width: 56),
+            ),
+            if (copyright != null)
+              Positioned(
+                right: 8,
+                bottom: MediaQuery.paddingOf(context).bottom + 72,
+                child: Text(
+                  copyright,
+                  style: const TextStyle(fontSize: 12, color: Colors.white),
+                ),
+              ),
             const Positioned(
               left: 0,
               right: 0,
@@ -222,6 +246,18 @@ class MapBody extends ConsumerWidget {
         );
       },
       orElse: () => const Center(child: CircularProgressIndicator()),
+    );
+  }
+
+  LatLngBounds _calculateBounds(LatLng center, double radiusInKm) {
+    // 地球の平均半径で近似
+    const earthRadiusKm = 6371.0;
+    final latDelta = radiusInKm / earthRadiusKm * (180 / pi);
+    final lngDelta = latDelta / cos(center.latitude * pi / 180);
+
+    return LatLngBounds(
+      LatLng(center.latitude - latDelta, center.longitude - lngDelta),
+      LatLng(center.latitude + latDelta, center.longitude + lngDelta),
     );
   }
 }

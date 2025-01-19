@@ -136,8 +136,9 @@ class MapImage extends StatelessWidget {
     final imageUrl = 'https://maps.googleapis.com/maps/api/staticmap'
         '?center=${latLng.latitude},${latLng.longitude}'
         '&zoom=18'
-        '&size=600x400'
+        '&size=300x200'
         '&maptype=satellite'
+        '&language=ja'
         '&key=$apiKey';
 
     return ClipRRect(

@@ -30,19 +30,26 @@ dependencies:
   flutter_box_transform: ^0.4.6
   animated_toggle_switch: ^0.8.4
   arrow_path: ^3.1.0
+  flutter_gen: ^5.8.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^5.0.0
-  riverpod_generator: ^2.6.4
+  riverpod_generator: ^2.6.3
   build_runner: ^2.4.14
-  custom_lint: ^0.7.1
-  riverpod_lint: ^2.6.4
-  auto_route_generator: ^9.3.1
-  freezed: ^2.5.8
-  json_serializable: ^6.9.3
+  custom_lint: ^0.7.0
+  riverpod_lint: ^2.6.3
+  auto_route_generator: ^9.0.0
+  freezed: ^2.5.7
+  json_serializable: ^6.9.0
+  flutter_gen_runner: ^5.8.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_gen:
+  output: lib/gen/
