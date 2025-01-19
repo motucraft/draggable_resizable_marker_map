@@ -53,7 +53,7 @@ class DraggableMarkerMap extends HookConsumerWidget {
               backgroundColor: WidgetStateProperty.all(Colors.white),
             ),
             onPressed: () => context.router.popForced(),
-            icon: Icon(Icons.chevron_left, size: 24),
+            icon: const Icon(Icons.chevron_left, size: 24),
           ),
           actions: [
             if (hasDroppedStamp)
@@ -65,10 +65,10 @@ class DraggableMarkerMap extends HookConsumerWidget {
                 },
                 iconBuilder: (editMode, _) {
                   return switch (editMode) {
-                    EditMode.none => Icon(Icons.close),
-                    EditMode.delete => Icon(Icons.delete),
-                    EditMode.transform => Icon(Icons.transform),
-                    EditMode.arrow => Icon(Icons.arrow_forward),
+                    EditMode.none => const Icon(Icons.close),
+                    EditMode.delete => const Icon(Icons.delete),
+                    EditMode.transform => const Icon(Icons.transform),
+                    EditMode.arrow => const Icon(Icons.arrow_forward),
                   };
                 },
                 styleBuilder: (mode) {
@@ -100,7 +100,7 @@ class DraggableMarkerMap extends HookConsumerWidget {
                   await context.router
                       .push(FlutterMapScrollableSheetRoute(latLng: latLng));
                 },
-                icon: Icon(Icons.warehouse_outlined, size: 24),
+                icon: const Icon(Icons.warehouse_outlined, size: 24),
               ),
             ),
           ],
@@ -156,12 +156,13 @@ class MapBody extends ConsumerWidget {
             DragTarget<DraggableStamp>(
               onAcceptWithDetails: (details) async {
                 final adjustedOffset = Offset(
-                  details.offset.dx + details.data.width / 2 - 10,
-                  details.offset.dy + details.data.height / 2 - 60,
+                  details.offset.dx + details.data.width / 2,
+                  details.offset.dy + details.data.height / 2 - 50,
                 );
 
                 final renderBox = context.findRenderObject() as RenderBox;
                 final localOffset = renderBox.globalToLocal(adjustedOffset);
+
                 final localPoint = Point(localOffset.dx, localOffset.dy);
                 LatLng latLng = mapController.camera.pointToLatLng(localPoint);
 
@@ -193,7 +194,7 @@ class MapBody extends ConsumerWidget {
 
                   ref.read(droppedStampNotifierProvider.notifier).addStamp(
                         DroppedStamp(
-                          id: Uuid().v4(),
+                          id: const Uuid().v4(),
                           stampCategory: details.data.stampCategory,
                           latLng: latLng,
                           widget: details.data.widget,
@@ -211,7 +212,7 @@ class MapBody extends ConsumerWidget {
               },
               builder: (_, __, ___) => const SizedBox.expand(),
             ),
-            Positioned(
+            const Positioned(
               left: 0,
               right: 0,
               bottom: 0,

@@ -160,13 +160,8 @@ class TransformableArrow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screenSize = MediaQuery.sizeOf(context);
-    dev.log('screenSize=$screenSize');
-
     final start = stamp.start;
     final end = stamp.end;
-    dev.log(
-        '_generateArrowMarker latLng=${stamp.latLng}, start=$start, end=$end');
 
     if (start == null || end == null) {
       throw ArgumentError('Arrow stamp must have both start and end positions');
@@ -220,7 +215,7 @@ class TransformableMarker extends HookConsumerWidget {
         useMemoized(() => TransformableBoxController(
               allowFlippingWhileResizing: false,
               rect: initialRect,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 minWidth: 32,
                 minHeight: 32,
               ),
@@ -305,7 +300,7 @@ class TransformableMarker extends HookConsumerWidget {
             );
           },
           cornerHandleBuilder: (context, handle) {
-            return Icon(
+            return const Icon(
               Icons.open_with,
               size: 24.0,
               color: Colors.white,

@@ -18,7 +18,7 @@ class MapDialogScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
       ),
@@ -62,9 +62,8 @@ class MapDialogScreen extends StatelessWidget {
                                             ConnectionState.waiting ||
                                         !snapshot.hasData ||
                                         address == null) {
-                                      return Center(
-                                          child:
-                                              const CircularProgressIndicator());
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
 
                                     return Text(address);

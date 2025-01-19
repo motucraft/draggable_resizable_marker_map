@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stamp.freezed.dart';
 
 final stampList = [
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.login,
     widget: FittedBox(
       child: Icon(
@@ -15,7 +15,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.exit,
     widget: FittedBox(
       child: Icon(
@@ -26,7 +26,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.arrow,
     widget: FittedBox(
       child: Icon(
@@ -37,7 +37,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.info,
     widget: FittedBox(
       child: Icon(
@@ -48,7 +48,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.wc,
     widget: FittedBox(
       child: Icon(
@@ -65,7 +65,7 @@ final stampList = [
       child: Container(
         color: Colors.yellow,
         alignment: Alignment.center,
-        child: FittedBox(
+        child: const FittedBox(
           child: Text(
             'DANGER',
             style: TextStyle(color: Colors.red),
@@ -76,7 +76,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.localParking,
     widget: FittedBox(
       child: Icon(
@@ -87,7 +87,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.smokingArea,
     widget: FittedBox(
       child: Icon(
@@ -98,7 +98,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.busStop,
     widget: FittedBox(
       child: Icon(
@@ -109,7 +109,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.help,
     widget: FittedBox(
       child: Icon(
@@ -120,7 +120,7 @@ final stampList = [
     width: 48,
     height: 48,
   ),
-  Stamp(
+  const Stamp(
     stampCategory: StampCategory.store,
     widget: FittedBox(
       child: Icon(

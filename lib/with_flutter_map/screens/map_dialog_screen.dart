@@ -3,9 +3,9 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:draggable_resizable_marker_map/with_flutter_map/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:draggable_resizable_marker_map/with_flutter_map/router/router.gr.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart' as latlong;
@@ -19,7 +19,7 @@ class FlutterMapMapDialogRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
       ),
@@ -69,9 +69,8 @@ class FlutterMapMapDialogRoute extends StatelessWidget {
                                             ConnectionState.waiting ||
                                         !snapshot.hasData ||
                                         address == null) {
-                                      return Center(
-                                          child:
-                                              const CircularProgressIndicator());
+                                      return const Center(
+                                          child: CircularProgressIndicator());
                                     }
 
                                     return Text(address);
@@ -96,7 +95,6 @@ class FlutterMapMapDialogRoute extends StatelessWidget {
   Future<String?> _getAddressFromLatLng(LatLng latLng) async {
     const apiKey = String.fromEnvironment('GOOGLE_MAP_API_KEY');
 
-    // URIを安全に構築
     final uri = Uri.https(
       'maps.googleapis.com',
       '/maps/api/geocode/json',

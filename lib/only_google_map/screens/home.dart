@@ -24,7 +24,7 @@ class Home extends ConsumerWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarBrightness: Brightness.light,
           statusBarIconBrightness: Brightness.dark,
@@ -34,7 +34,7 @@ class Home extends ConsumerWidget {
         myLocationEnabled: true,
         padding:
             EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom + 16),
-        initialCameraPosition: CameraPosition(
+        initialCameraPosition: const CameraPosition(
           target: LatLng(35.68124555583155, 139.7671262465092),
           zoom: 14.0,
         ),

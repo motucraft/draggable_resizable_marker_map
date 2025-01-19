@@ -22,7 +22,7 @@ class FlutterMapScrollableSheetScreen extends StatelessWidget {
               maxChildSize: 1.0,
               builder: (context, scrollController) {
                 return Container(
-                  padding: EdgeInsets.fromLTRB(8, 0, 8, 16),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: const BorderRadius.vertical(
@@ -58,11 +58,11 @@ class FlutterMapScrollableSheetScreen extends StatelessWidget {
                             backgroundColor: Colors.grey.shade300,
                             child: Text(
                               '${index + 1}',
-                              style: TextStyle(color: Colors.black),
+                              style: const TextStyle(color: Colors.black),
                             ),
                           ),
                           title: Text('サンプルコンテンツ ${index + 1}'),
-                          subtitle: Text('ここはサンプルコンテンツです'),
+                          subtitle: const Text('ここはサンプルコンテンツです'),
                         ),
                       ),
                     ],

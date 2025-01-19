@@ -78,7 +78,7 @@ class MarkerNotifier extends _$MarkerNotifier {
 
   Future<BitmapDescriptor> _createIconWithDelete(DroppedStamp stamp) async {
     final markerWidget = badges.Badge(
-      badgeStyle: badges.BadgeStyle(
+      badgeStyle: const badges.BadgeStyle(
         shape: badges.BadgeShape.circle,
         badgeColor: Colors.red,
         borderSide: BorderSide(color: Colors.white, width: 1),
@@ -93,7 +93,7 @@ class MarkerNotifier extends _$MarkerNotifier {
     );
 
     return await markerWidget.toBitmapDescriptor(
-      waitToRender: Duration(milliseconds: 300),
+      waitToRender: const Duration(milliseconds: 300),
     );
   }
 }

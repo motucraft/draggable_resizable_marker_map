@@ -13,7 +13,7 @@ class StampSelection extends StatelessWidget {
       padding: EdgeInsets.only(
           top: 8, bottom: MediaQuery.paddingOf(context).bottom + 16),
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: 48),
+        constraints: const BoxConstraints(maxHeight: 48),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: stampList.length,

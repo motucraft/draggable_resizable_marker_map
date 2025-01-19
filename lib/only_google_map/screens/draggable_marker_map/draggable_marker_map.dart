@@ -49,7 +49,7 @@ class DraggableMarkerMap extends HookConsumerWidget {
               backgroundColor: WidgetStateProperty.all(Colors.white),
             ),
             onPressed: () => context.router.popForced(),
-            icon: Icon(Icons.chevron_left, size: 24),
+            icon: const Icon(Icons.chevron_left, size: 24),
           ),
           actions: [
             IconButton(
@@ -61,7 +61,7 @@ class DraggableMarkerMap extends HookConsumerWidget {
                 context.router.popForced();
                 await context.router.push(ScrollableSheetRoute(latLng: latLng));
               },
-              icon: Icon(Icons.warehouse_outlined, size: 24),
+              icon: const Icon(Icons.warehouse_outlined, size: 24),
             ),
             IconButton(
               style: ButtonStyle(
@@ -136,7 +136,7 @@ class MapBody extends ConsumerWidget {
 
             ref.read(droppedStampNotifierProvider.notifier).addStamp(
                   DroppedStamp(
-                    id: Uuid().v4(),
+                    id: const Uuid().v4(),
                     latLng: latLng,
                     widget: Container(
                       key: key,
@@ -151,7 +151,7 @@ class MapBody extends ConsumerWidget {
             return const SizedBox.expand();
           },
         ),
-        Positioned(
+        const Positioned(
           left: 0,
           right: 0,
           bottom: 0,
@@ -172,7 +172,7 @@ class StampSelection extends StatelessWidget {
       padding: EdgeInsets.only(
           top: 8, bottom: MediaQuery.paddingOf(context).bottom + 16),
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: 48),
+        constraints: const BoxConstraints(maxHeight: 48),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: stampList.length,
