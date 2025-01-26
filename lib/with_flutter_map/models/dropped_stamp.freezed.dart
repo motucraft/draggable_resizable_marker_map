@@ -14,16 +14,25 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+DroppedStamp _$DroppedStampFromJson(Map<String, dynamic> json) {
+  return _DroppedStamp.fromJson(json);
+}
+
 /// @nodoc
 mixin _$DroppedStamp {
   String get id => throw _privateConstructorUsedError;
   StampCategory get stampCategory => throw _privateConstructorUsedError;
-  LatLng get latLng => throw _privateConstructorUsedError;
-  Widget get widget => throw _privateConstructorUsedError;
+  LatLng get latLng => throw _privateConstructorUsedError; // refs:
+//  - https://github.com/rrousselGit/freezed/issues/1075
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Widget? get widget => throw _privateConstructorUsedError;
   double get width => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
   LatLng? get start => throw _privateConstructorUsedError;
   LatLng? get end => throw _privateConstructorUsedError;
+
+  /// Serializes this DroppedStamp to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of DroppedStamp
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +51,7 @@ abstract class $DroppedStampCopyWith<$Res> {
       {String id,
       StampCategory stampCategory,
       LatLng latLng,
-      Widget widget,
+      @JsonKey(includeFromJson: false, includeToJson: false) Widget? widget,
       double width,
       double height,
       LatLng? start,
@@ -67,7 +76,7 @@ class _$DroppedStampCopyWithImpl<$Res, $Val extends DroppedStamp>
     Object? id = null,
     Object? stampCategory = null,
     Object? latLng = null,
-    Object? widget = null,
+    Object? widget = freezed,
     Object? width = null,
     Object? height = null,
     Object? start = freezed,
@@ -86,10 +95,10 @@ class _$DroppedStampCopyWithImpl<$Res, $Val extends DroppedStamp>
           ? _value.latLng
           : latLng // ignore: cast_nullable_to_non_nullable
               as LatLng,
-      widget: null == widget
+      widget: freezed == widget
           ? _value.widget
           : widget // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -122,7 +131,7 @@ abstract class _$$DroppedStampImplCopyWith<$Res>
       {String id,
       StampCategory stampCategory,
       LatLng latLng,
-      Widget widget,
+      @JsonKey(includeFromJson: false, includeToJson: false) Widget? widget,
       double width,
       double height,
       LatLng? start,
@@ -145,7 +154,7 @@ class __$$DroppedStampImplCopyWithImpl<$Res>
     Object? id = null,
     Object? stampCategory = null,
     Object? latLng = null,
-    Object? widget = null,
+    Object? widget = freezed,
     Object? width = null,
     Object? height = null,
     Object? start = freezed,
@@ -164,10 +173,10 @@ class __$$DroppedStampImplCopyWithImpl<$Res>
           ? _value.latLng
           : latLng // ignore: cast_nullable_to_non_nullable
               as LatLng,
-      widget: null == widget
+      widget: freezed == widget
           ? _value.widget
           : widget // ignore: cast_nullable_to_non_nullable
-              as Widget,
+              as Widget?,
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -189,17 +198,20 @@ class __$$DroppedStampImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$DroppedStampImpl implements _DroppedStamp {
   const _$DroppedStampImpl(
       {required this.id,
       required this.stampCategory,
       required this.latLng,
-      required this.widget,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.widget,
       required this.width,
       required this.height,
       this.start,
       this.end});
+
+  factory _$DroppedStampImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DroppedStampImplFromJson(json);
 
   @override
   final String id;
@@ -207,8 +219,11 @@ class _$DroppedStampImpl implements _DroppedStamp {
   final StampCategory stampCategory;
   @override
   final LatLng latLng;
+// refs:
+//  - https://github.com/rrousselGit/freezed/issues/1075
   @override
-  final Widget widget;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final Widget? widget;
   @override
   final double width;
   @override
@@ -239,6 +254,7 @@ class _$DroppedStampImpl implements _DroppedStamp {
             (identical(other.end, end) || other.end == end));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, stampCategory, latLng,
       widget, width, height, start, end);
@@ -250,6 +266,13 @@ class _$DroppedStampImpl implements _DroppedStamp {
   @pragma('vm:prefer-inline')
   _$$DroppedStampImplCopyWith<_$DroppedStampImpl> get copyWith =>
       __$$DroppedStampImplCopyWithImpl<_$DroppedStampImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DroppedStampImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _DroppedStamp implements DroppedStamp {
@@ -257,20 +280,26 @@ abstract class _DroppedStamp implements DroppedStamp {
       {required final String id,
       required final StampCategory stampCategory,
       required final LatLng latLng,
-      required final Widget widget,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final Widget? widget,
       required final double width,
       required final double height,
       final LatLng? start,
       final LatLng? end}) = _$DroppedStampImpl;
+
+  factory _DroppedStamp.fromJson(Map<String, dynamic> json) =
+      _$DroppedStampImpl.fromJson;
 
   @override
   String get id;
   @override
   StampCategory get stampCategory;
   @override
-  LatLng get latLng;
+  LatLng get latLng; // refs:
+//  - https://github.com/rrousselGit/freezed/issues/1075
   @override
-  Widget get widget;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  Widget? get widget;
   @override
   double get width;
   @override

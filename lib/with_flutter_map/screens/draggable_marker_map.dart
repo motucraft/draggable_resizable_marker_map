@@ -131,6 +131,8 @@ class MapBody extends HookConsumerWidget {
     final copyright = ref
         .watch(copyrightProvider(latLng: latLng, bounds: bounds))
         .valueOrNull;
+    final devicePixelRatio =
+        useMemoized(() => MediaQuery.devicePixelRatioOf(context));
 
     return sessionTokenAsyncValue.maybeWhen(
       data: (sessionToken) {
@@ -207,8 +209,9 @@ class MapBody extends HookConsumerWidget {
                           stampCategory: details.data.stampCategory,
                           latLng: latLng,
                           widget: details.data.widget,
-                          width: width,
-                          height: height,
+                          // 永続化のためにdevicePixelRatioで正規化する
+                          width: width / devicePixelRatio,
+                          height: height / devicePixelRatio,
                           start: start,
                           end: end,
                         ),

@@ -19,8 +19,9 @@ class CustomDraggableStamp extends StatelessWidget {
         color: Colors.transparent,
         child: Transform.translate(
           offset: const Offset(0, -50),
-          child: Transform.scale(
-            scale: data.id == null ? 2 : 1,
+          child: SizedBox(
+            width: data.width,
+            height: data.height,
             child: data.widget,
           ),
         ),

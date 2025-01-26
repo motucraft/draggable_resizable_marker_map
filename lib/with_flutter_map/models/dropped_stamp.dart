@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:latlong2/latlong.dart';
 
 part 'dropped_stamp.freezed.dart';
+part 'dropped_stamp.g.dart';
 
 @freezed
 class DroppedStamp with _$DroppedStamp {
@@ -11,10 +12,15 @@ class DroppedStamp with _$DroppedStamp {
     required String id,
     required StampCategory stampCategory,
     required LatLng latLng,
-    required Widget widget,
+    // refs:
+    //  - https://github.com/rrousselGit/freezed/issues/1075
+    @JsonKey(includeFromJson: false, includeToJson: false) Widget? widget,
     required double width,
     required double height,
     LatLng? start,
     LatLng? end,
   }) = _DroppedStamp;
+
+  factory DroppedStamp.fromJson(Map<String, dynamic> json) =>
+      _$DroppedStampFromJson(json);
 }

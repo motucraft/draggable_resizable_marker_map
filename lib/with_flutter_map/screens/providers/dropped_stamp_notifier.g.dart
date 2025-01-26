@@ -7,7 +7,7 @@ part of 'dropped_stamp_notifier.dart';
 // **************************************************************************
 
 String _$droppedStampNotifierHash() =>
-    r'7413c888ff81e9806e292fefb31eba01c31b1712';
+    r'545250d15587286b2557afdcd0630b6817aa906c';
 
 /// See also [DroppedStampNotifier].
 @ProviderFor(DroppedStampNotifier)

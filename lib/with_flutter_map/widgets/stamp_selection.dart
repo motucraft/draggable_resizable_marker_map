@@ -11,14 +11,16 @@ class StampSelection extends StatelessWidget {
     return Container(
       color: Colors.black54,
       padding: EdgeInsets.only(
-          top: 8, bottom: MediaQuery.paddingOf(context).bottom + 16),
+        top: 8,
+        bottom: MediaQuery.paddingOf(context).bottom + 16,
+      ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxHeight: 48),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: stampList.length,
-          itemBuilder: (context, index) {
-            final stamp = stampList[index];
+          itemCount: StampCategory.values.length,
+          itemBuilder: (_, index) {
+            final stamp = StampCategory.values[index].stamp;
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),

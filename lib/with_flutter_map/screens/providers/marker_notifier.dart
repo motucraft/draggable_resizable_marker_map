@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer' as dev;
 import 'dart:math';
 import 'dart:ui';
@@ -26,13 +27,17 @@ const transformableMarkerPadding = Offset(48, 48);
 
 @riverpod
 class MarkerNotifier extends _$MarkerNotifier {
-  final double devicePixelRatio =
+  final devicePixelRatio =
       PlatformDispatcher.instance.views.first.devicePixelRatio;
 
   @override
   Future<List<Marker>> build() async {
-    final droppedStamps = ref.watch(droppedStampNotifierProvider);
+    final List<DroppedStamp> droppedStamps =
+        ref.watch(droppedStampNotifierProvider);
     final editMode = ref.watch(editModeNotifierProvider);
+
+    dev.log(
+        'droppedStamps=${jsonEncode(droppedStamps.map((stamp) => stamp.toJson()).toList())}');
 
     if (editMode == EditMode.transform) {
       return await _generateTransformMarkers(droppedStamps);
@@ -52,10 +57,14 @@ class MarkerNotifier extends _$MarkerNotifier {
         return _generateArrowMarker(stamp, isDeleteMode: isDeleteMode);
       }
 
+      // stampのサイズは正規化されているため、devicePixelRatioを利用してスケールされたサイズへ変換
+      final scaledWidth = stamp.width * devicePixelRatio;
+      final scaledHeight = stamp.height * devicePixelRatio;
+
       return Marker(
         point: stamp.latLng,
-        width: stamp.width,
-        height: stamp.height,
+        width: scaledWidth,
+        height: scaledHeight,
         child: GestureDetector(
           onTap: isDeleteMode
               ? () {
@@ -82,12 +91,13 @@ class MarkerNotifier extends _$MarkerNotifier {
                   id: stamp.id,
                   stampCategory: stamp.stampCategory,
                   widget: SizedBox(
-                    width: stamp.width,
-                    height: stamp.height,
+                    width: scaledWidth,
+                    height: scaledHeight,
+                    // child: stamp.stampCategory.stamp,
                     child: stamp.widget,
                   ),
-                  width: stamp.width,
-                  height: stamp.height,
+                  width: scaledWidth,
+                  height: scaledHeight,
                 ),
               ),
             ),
@@ -135,12 +145,16 @@ class MarkerNotifier extends _$MarkerNotifier {
         return _generateArrowMarker(stamp);
       }
 
+      // stampのサイズは正規化されているため、devicePixelRatioを利用してスケールされたサイズへ変換
+      final scaledWidth = stamp.width * devicePixelRatio;
+      final scaledHeight = stamp.height * devicePixelRatio;
+
       return Marker(
         point: stamp.latLng,
-        width: stamp.width + transformableMarkerPadding.dx,
-        height: stamp.height + transformableMarkerPadding.dy,
+        width: scaledWidth + transformableMarkerPadding.dx,
+        height: scaledHeight + transformableMarkerPadding.dy,
         child: TransformableMarker(
-          initialRect: Rect.fromLTWH(24, 24, stamp.width, stamp.height),
+          initialRect: Rect.fromLTWH(24, 24, scaledWidth, scaledHeight),
           stamp: stamp,
         ),
       );
@@ -188,7 +202,6 @@ class TransformableArrow extends ConsumerWidget {
 
         ref.read(droppedStampNotifierProvider.notifier).updateStamp(
               stamp.id,
-              // newLatLng: middleLatLng,
               newLatLng: stamp.latLng,
               newStart: startLatLng,
               newEnd: endLatLng,
@@ -220,6 +233,8 @@ class TransformableMarker extends HookConsumerWidget {
                 minHeight: 32,
               ),
             ));
+    final devicePixelRatio =
+        useMemoized(() => MediaQuery.devicePixelRatioOf(context));
 
     return Stack(
       clipBehavior: Clip.none,
@@ -287,8 +302,9 @@ class TransformableMarker extends HookConsumerWidget {
             ref.read(droppedStampNotifierProvider.notifier).updateStamp(
                   stamp.id,
                   newLatLng: newLatLng,
-                  newWidth: width,
-                  newHeight: height,
+                  // 永続化のためにdevicePixelRatioで正規化する
+                  newWidth: width / devicePixelRatio,
+                  newHeight: height / devicePixelRatio,
                 );
           },
           contentBuilder: (context, rect, flip) {
